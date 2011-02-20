@@ -10,3 +10,7 @@ http://functional-tests.appspot.com/param?val=test+string
         Returns the value of the "val" parameter.
         In this case it would return "test string"
         Content type is text/plain
+
+http://functional-tests.appspot.com/header?val=test
+        Sets the header 'custom-header' to the value of 'val' (in this case test).
+        Content type is text/plain

@@ -16,11 +16,20 @@ class ParamHandler(webapp.RequestHandler):
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.out.write(self.request.get("val"))
 
+class HeaderHandler(webapp.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/plain'
+
+        header_value = self.request.get("val")
+
+        self.response.headers['custom-header'] = header_value
+        self.response.out.write("set 'custom-header' to " + header_value)
 
 def main():
     application = webapp.WSGIApplication([
                                           ('/random', RandomHandler),
-                                          ('/param', ParamHandler)
+                                          ('/param', ParamHandler),
+                                          ('/header', HeaderHandler)
                                          ],
                                          debug=True)
     util.run_wsgi_app(application)
